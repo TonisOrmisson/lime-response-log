@@ -14,9 +14,9 @@ Change to LS plugins folder:
 ```
 $ cd /your/limesurvey/path/plugins
 ```
-Use git to clone into folder `LimeResponseLogger`:
+Use git to clone into folder `ResponseLogger`:
 ```
-$ git clone https://github.com/TonisOrmisson/lime-response-logger.git LimeResponseLogger
+$ git clone https://github.com/TonisOrmisson/lime-response-logger.git ResponseLogger
 ```
 
 
