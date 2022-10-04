@@ -1,0 +1,41 @@
+{
+    "name": "tonisormisson/lime-response-logger",
+    "description": "A LimeSurvey plugin to save a log from each survey page submit",
+    "keywords": ["limesurvey"],
+    "homepage": "https://github.com/TonisOrmisson/lime-response-logger",
+    "type": "limesurvey-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tõnis Ormisson",
+            "email": "tonis@andmemasin.eu",
+            "homepage": "https://andmemasin.eu",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.4.0",
+        "ext-json": "*"
+    },
+    "config" : {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        },
+        "platform": {
+            "php": "7.4.0"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
