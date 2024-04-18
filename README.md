@@ -12,7 +12,7 @@ Requires minimum LimeSurvey version 3.0.1
 
 Change to LS plugins folder:
 ```
-$ cd /your/limesurvey/path/plugins
+$ cd upload/plugins
 ```
 Use git to clone into folder `ResponseLogger`:
 ```
