@@ -24,6 +24,7 @@ class ResponseLogger extends PluginBase
 
     public function beforeSurveyPage()
     {
+        Yii::log('beforeSurveyPage '. $this->surveyId,'trace', $this->logCategory());
         $event = $this->event;
         $this->surveyId = $event->get('surveyId');
 
@@ -31,7 +32,7 @@ class ResponseLogger extends PluginBase
         $surveyData = $_SESSION[$key] ?? null;
 
         if ($surveyData === null) {
-            Yii::log('first page '. $this->surveyId,'info', __METHOD__);
+            Yii::log('first page '. $this->surveyId,'info', $this->logCategory());
             return;
         }
         $data = $this->parseBasicData();
@@ -41,7 +42,7 @@ class ResponseLogger extends PluginBase
         $token = $surveyData['token'] ?? null;
         $removeKeys = ['YII_CSRF_TOKEN', 'ajax', 'fieldnames', 'LEMpostKey', 'token'];
         $log_data = new ArrayObject($_POST);
-        Yii::log(json_encode($log_data),'info', __METHOD__);
+        Yii::log(json_encode($log_data),'trace', $this->logCategory());
         foreach ($removeKeys as $key) {
             if(isset($log_data[$key])) {
                 unset($log_data[$key]);
@@ -52,15 +53,16 @@ class ResponseLogger extends PluginBase
         /** @var CHttpRequest $request */
         $request = Yii::app()->request;
 
-        Yii::log(json_encode($log_data),'info', __METHOD__);
+        Yii::log(json_encode($log_data),'trace', $this->logCategory());
         if($request->isPostRequest) {
-            Yii::log("Step " . $_POST['lastgroup'],'info', __METHOD__);
-            Yii::log("Step " . $_POST['move'],'info', __METHOD__);
+            Yii::log("Step " . $_POST['lastgroup'],'trace', $this->logCategory());
+            Yii::log("Step " . $_POST['move'],'trace', $this->logCategory());
+        } else {
+            Yii::log("Step " . $step,'info', $this->logCategory());
+            Yii::log("Token " . $token,'info', $this->logCategory());
         }
+        Yii::log("Response id " . $responseId,'info', $this->logCategory());
 
-        Yii::log("Step " . $step,'info', __METHOD__);
-        Yii::log("Token " . $token,'info', __METHOD__);
-        Yii::log("Response id " . $responseId,'info', __METHOD__);
         $this->save($data);
 
 
@@ -192,5 +194,10 @@ class ResponseLogger extends PluginBase
             ]
         );
     }
+
+    private function logCategory() {
+        return "andmemasin\\ResponseLogger";
+    }
+
 
 }
